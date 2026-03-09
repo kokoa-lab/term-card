@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 15% 8%;
+    --foreground: 120 100% 75%;
+
+    --card: 220 15% 10%;
+    --card-foreground: 120 100% 75%;
+
+    --popover: 220 15% 10%;
+    --popover-foreground: 120 100% 75%;
+
+    --primary: 120 100% 65%;
+    --primary-foreground: 220 15% 6%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 120 60% 70%;
+
+    --muted: 220 10% 14%;
+    --muted-foreground: 120 20% 50%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 220 15% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 120 40% 20%;
+    --input: 120 30% 18%;
+    --ring: 120 100% 65%;
+
+    --radius: 0.25rem;
+
+    --terminal-cursor: 120 100% 65%;
+    --terminal-header: 220 15% 14%;
+    --terminal-dot-red: 0 80% 55%;
+    --terminal-dot-yellow: 45 100% 55%;
+    --terminal-dot-green: 120 80% 45%;
+    --terminal-prompt: 270 60% 70%;
+    --terminal-info-label: 180 80% 60%;
+    --terminal-ascii-art: 30 100% 60%;
+
+    --sidebar-background: 220 15% 8%;
+    --sidebar-foreground: 120 100% 75%;
+    --sidebar-primary: 120 100% 65%;
+    --sidebar-primary-foreground: 220 15% 6%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 120 100% 75%;
+    --sidebar-border: 120 40% 20%;
+    --sidebar-ring: 120 100% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .font-mono-terminal {
+    font-family: 'Nanum Gothic Coding', monospace;
+  }
+
+  .terminal-window {
+    @apply bg-card border border-border rounded-md overflow-hidden;
+    box-shadow: 0 20px 60px -15px hsl(120 100% 65% / 0.08),
+                0 0 30px -10px hsl(120 100% 65% / 0.05);
+  }
+
+  .terminal-header {
+    @apply flex items-center gap-2 px-4 py-2.5;
+    background: hsl(var(--terminal-header));
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .terminal-dot-red { background: hsl(var(--terminal-dot-red)); }
+  .terminal-dot-yellow { background: hsl(var(--terminal-dot-yellow)); }
+  .terminal-dot-green { background: hsl(var(--terminal-dot-green)); }
+
+  .terminal-body {
+    @apply p-6 font-mono-terminal text-sm leading-relaxed;
+  }
+
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes typing-glow {
+    0%, 100% { text-shadow: 0 0 5px hsl(120 100% 65% / 0.5); }
+    50% { text-shadow: 0 0 15px hsl(120 100% 65% / 0.8), 0 0 30px hsl(120 100% 65% / 0.3); }
+  }
+
+  .text-glow {
+    text-shadow: 0 0 8px hsl(120 100% 65% / 0.4);
+  }
+
+  .input-terminal {
+    @apply bg-muted border border-border rounded-sm px-3 py-2 font-mono-terminal text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring w-full;
+  }
+
+  .btn-terminal {
+    @apply font-mono-terminal text-sm px-4 py-2 rounded-sm border transition-all duration-200;
+  }
+
+  .btn-terminal-primary {
+    @apply btn-terminal bg-primary text-primary-foreground border-primary hover:brightness-110;
+  }
+
+  .btn-terminal-secondary {
+    @apply btn-terminal bg-secondary text-secondary-foreground border-border hover:bg-muted;
+  }
+}
